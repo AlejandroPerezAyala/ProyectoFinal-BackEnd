@@ -30,7 +30,7 @@ Realizar una clase “ProductManager” que gestione un conjunto de productos.
 
 7. Debe contar con un método “getProductById” el cual debe buscar en el arreglo el producto que coincida con el id
 
-   En caso de no coincidir ningún id, mostrar en consola un error “Not found”
+8. En caso de no coincidir ningún id, mostrar en consola un error “Not found”
 
 # Proceso de testing de este entregable ✅
 
