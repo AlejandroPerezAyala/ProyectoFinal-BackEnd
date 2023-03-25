@@ -1,0 +1,13 @@
+{
+  "type": "module",
+  "name": "proyectofinal-backend",
+  "version": "1.0.0",
+  "description": "Proyecto final del curso de backend de CoderHouse",
+  "main": "ProductManager.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Alejandro Perez Ayala",
+  "license": "ISC"
+}
