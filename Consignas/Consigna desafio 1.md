@@ -34,6 +34,8 @@ Realizar una clase “ProductManager” que gestione un conjunto de productos.
 
 # Proceso de testing de este entregable ✅
 
+## Clases con ECMAScript y ECMAScript avanzado
+
 - Se creará una instancia de la clase “ProductManager”
 
 - Se llamará “getProducts” recién creada la instancia, debe devolver un arreglo vacío []
