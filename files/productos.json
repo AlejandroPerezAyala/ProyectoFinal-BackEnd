@@ -1,20 +1,94 @@
 [
 	{
-		"title": "producto prueba",
-		"description": "Este es un producto modificado",
-		"price": 200,
-		"thumbnail": "sin imagen",
-		"code": "abcd123",
-		"stock": 25,
-		"id": 2
+		"id": 1,
+		"tipo": "running",
+		"nombre": "Nike Air Zoom Pegasus 38",
+		"precio": 130,
+		"stock": 20,
+		"descripcion": "Las Nike Air Zoom Pegasus 38 son unas zapatillas de running que ofrecen una gran amortiguación y comodidad para largas distancias. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor durabilidad.",
+		"codigo": "NIK-AZP-38"
 	},
 	{
-		"title": "producto prueba",
-		"description": "producto de prueba",
-		"price": 200,
-		"thumbnail": "sin imagen",
-		"code": "abcd1234",
-		"stock": 25,
-		"id": 3
+		"id": 2,
+		"tipo": "casual",
+		"nombre": "Adidas Superstar",
+		"precio": 80,
+		"stock": 15,
+		"descripcion": "Las Adidas Superstar son unas zapatillas clásicas de estilo retro que combinan una parte superior de cuero con las icónicas rayas de Adidas en contraste. Cuentan con una suela de goma resistente y una plantilla acolchada para mayor comodidad.",
+		"codigo": "ADI-SS"
+	},
+	{
+		"id": 3,
+		"tipo": "basketball",
+		"nombre": "Jordan Why Not Zer0.4",
+		"precio": 160,
+		"stock": 10,
+		"descripcion": "Las Jordan Why Not Zer0.4 son unas zapatillas de baloncesto de alto rendimiento diseñadas para el jugador Russell Westbrook. Cuentan con una parte superior de malla y cuero para una mayor transpirabilidad y soporte, y una suela exterior de goma con patrón de tracción para una mayor adherencia en la cancha.",
+		"codigo": "JOR-WNZ-4"
+	},
+	{
+		"id": 4,
+		"tipo": "training",
+		"nombre": "Reebok Nano X",
+		"precio": 130,
+		"stock": 12,
+		"descripcion": "Las Reebok Nano X son unas zapatillas de entrenamiento de alto rendimiento diseñadas para la comodidad y la durabilidad. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor tracción en diferentes superficies.",
+		"codigo": "REE-NX"
+	},
+	{
+		"id": 5,
+		"tipo": "running",
+		"nombre": "Asics Gel-Kayano 28",
+		"precio": 180,
+		"stock": 8,
+		"descripcion": "Las Asics Gel-Kayano 28 son unas zapatillas de running diseñadas para corredores con pronación. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor tracción. Además, ofrecen una gran amortiguación y estabilidad gracias a la tecnología Gel de Asics.",
+		"codigo": "ASI-GK-28"
+	},
+	{
+		"id": 6,
+		"tipo": "casual",
+		"nombre": "Puma Cali",
+		"precio": 75,
+		"stock": 18,
+		"descripcion": "Las Puma Cali son unas zapatillas casuales de estilo retro inspiradas en la moda de los años 80. Cuentan con una parte superior de cuero y una suela de gomapara una mayor durabilidad y tracción. Además, cuentan con una plantilla acolchada para mayor comodidad en cada paso.",
+		"codigo": "PUM-CAL"
+	},
+	{
+		"id": 7,
+		"tipo": "running",
+		"nombre": "New Balance Fresh Foam 1080v11",
+		"precio": 150,
+		"stock": 14,
+		"descripcion": "Las New Balance Fresh Foam 1080v11 son unas zapatillas de running diseñadas para ofrecer una gran amortiguación y comodidad en cada carrera. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor durabilidad y tracción.",
+		"codigo": "NB-FF-1080v11"
+	},
+	{
+		"id": 8,
+		"tipo": "training",
+		"nombre": "Under Armour HOVR Phantom Connected",
+		"precio": 140,
+		"stock": 9,
+		"descripcion": "Las Under Armour HOVR Phantom Connected son unas zapatillas de entrenamiento de alto rendimiento que ofrecen una gran comodidad y soporte. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor tracción. Además, cuentan con tecnología de conectividad para registrar tus estadísticas de entrenamiento.",
+		"codigo": "UA-HP-C"
+	},
+	{
+		"id": 9,
+		"tipo": "running",
+		"nombre": "Mizuno Wave Rider 24",
+		"precio": 130,
+		"stock": 11,
+		"descripcion": "Las Mizuno Wave Rider 24 son unas zapatillas de running diseñadas para ofrecer una gran amortiguación y comodidad en cada carrera. Cuentan con una parte superior de malla transpirable y una suela exterior de goma resistente para una mayor durabilidad y tracción. Además, cuentan con la tecnología Wave de Mizuno para una mayor estabilidad y soporte.",
+		"codigo": "MIZ-WR-24"
+	},
+	{
+		"id": 10,
+		"tipo": "casual",
+		"nombre": "Vans Old Skool",
+		"precio": 65,
+		"stock": 16,
+		"descripcion": "Las Vans Old Skool son unas zapatillas casuales de estilo retro que combinan una parte superior de cuero y tela con la icónica banda lateral de Vans. Cuentan con una suela de goma resistente y una plantilla acolchada para mayor comodidad.",
+		"codigo": "VAN-OS"
 	}
 ]
+
+  

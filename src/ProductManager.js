@@ -3,10 +3,10 @@ import fs from "fs"
 
 
 //Creamos la clase con los metodos solicitados
-class ProductManager{
+export default class ProductManager{
     constructor(){
         this.productos = []
-        this.path = "./files/productos.json"
+        this.path = "../files/productos.json"
     }
 
     //Validamos si el producto ya existe
@@ -112,7 +112,7 @@ class ProductManager{
             if(producto){
                 return producto
             } else {
-                return "El producto con ese ID no existe"
+                return {error: "El producto con ese ID no existe"}
             }
         }
     }
@@ -146,7 +146,7 @@ class ProductManager{
             const data = await fs.promises.readFile(this.path, "utf-8");
             const productos = JSON.parse(data);
             
-            const producto = productos.find(producto => producto.id == idProducto)
+            let producto = productos.find(producto => producto.id == idProducto)
         
             if(producto){
                 producto[campo] = modificacion;
@@ -160,26 +160,26 @@ class ProductManager{
 }
 
 //creamos el Product Manager
-let product = new ProductManager();
+//let product = new ProductManager();
 
 //Pruebas solicitadas.
 
-let resultado = await product.getProducts();
-console.log(resultado);
-let producto = await product.addProduct("producto prueba", "producto de prueba", 200 ,"sin imagen", "abcd1234", 25);
-console.log(producto);
-resultado = await product.getProducts();
-console.log(resultado);
-let productoId = await product.getProductById(2);
-console.log(productoId);
-let productoEliminado = await product.deleteProductById(1)
-console.log(productoEliminado);
-resultado = await product.getProducts();
-console.log(resultado);
-let productoModificado = await product.updateProduct(2, "description", "Este es un producto modificado");
-console.log(productoModificado);
-resultado = await product.getProducts();
-console.log(resultado);
+// let resultado = await product.getProducts();
+// console.log(resultado);
+// let producto = await product.addProduct("producto prueba", "producto de prueba", 200 ,"sin imagen", "abcd1234", 25);
+// console.log(producto);
+// resultado = await product.getProducts();
+// console.log(resultado);
+// let productoId = await product.getProductById(2);
+// console.log(productoId);
+// let productoEliminado = await product.deleteProductById(1)
+// console.log(productoEliminado);
+// resultado = await product.getProducts();
+// console.log(resultado);
+// let productoModificado = await product.updateProduct(2, "description", "Este es un producto modificado");
+// console.log(productoModificado);
+// resultado = await product.getProducts();
+// console.log(resultado);
 
 
 
