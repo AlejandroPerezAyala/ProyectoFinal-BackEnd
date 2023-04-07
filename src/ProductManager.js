@@ -63,7 +63,7 @@ export default class ProductManager{
 
         } else {// creamos el primer producto del JSON
           //validamos que todos los datos se coloquen
-          if (!title ||!description ||!price ||!thumbnail ||!code ||!stock) {
+          if (!title ||!description ||!price ||!code ||!stock) {
             return "Te falto colocar algun dato!";
           }
 
