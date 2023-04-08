@@ -160,7 +160,7 @@ export default class ProductManager{
 }
 
 //creamos el Product Manager
-//let product = new ProductManager();
+let product = new ProductManager();
 
 //Pruebas solicitadas.
 
@@ -176,8 +176,8 @@ export default class ProductManager{
 // console.log(productoEliminado);
 // resultado = await product.getProducts();
 // console.log(resultado);
-// let productoModificado = await product.updateProduct(2, "description", "Este es un producto modificado");
-// console.log(productoModificado);
+let productoModificado = await product.updateProduct(2, "description", "Este es un producto modificado");
+console.log(productoModificado);
 // resultado = await product.getProducts();
 // console.log(resultado);
 
