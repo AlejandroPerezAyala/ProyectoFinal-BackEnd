@@ -1,12 +1,16 @@
 //importamos FS
 import fs from "fs"
+import path from "path"
+import { fileURLToPath } from "url"
 
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename)
+const filePath = path.join(__dirname, "../files/productos.json")
 //Creamos la clase con los metodos solicitados
 export default class ProductManager{
     constructor(){
         this.productos = []
-        this.path = "../files/productos.json"
+        this.path = filePath
     }
 
     //Validamos si el producto ya existe
@@ -112,7 +116,7 @@ export default class ProductManager{
             if(producto){
                 return producto
             } else {
-                return {error: "El producto con ese ID no existe"}
+                return null
             }
         }
     }
@@ -140,47 +144,36 @@ export default class ProductManager{
     }
 
     //modificamos un producto por ID
-    updateProduct = async (idProducto, campo, modificacion) => {
+    updateProduct = async (idProducto, modificacion) => {
 
         if(fs.existsSync(this.path)) {
             const data = await fs.promises.readFile(this.path, "utf-8");
             const productos = JSON.parse(data);
             
+            //obtengo el producto con el ID solicitado
             let producto = productos.find(producto => producto.id == idProducto)
-        
-            if(producto){
-                producto[campo] = modificacion;
-                await fs.promises.writeFile(this.path, JSON.stringify(productos, null, "\t"));
-                return "El producto se actualizo correctamente"
-            } else {
+
+            //obtengo las keys del objeto con los values que queremos modificar del producto obtenido por el ID
+            let keysProducto = Object.keys(modificacion);
+
+            //Si el ID del producto no existe devuelvo un error 
+            if(!producto){
                 return "El producto con ese ID no existe"
             }
+            
+            //itero con el "for of" las claves obtenidas
+            for (const key of keysProducto){
+
+                //si el producto a modificar tiene la/las keys a modificar le asigno los valores nuevos del objeto que le pasamos por parametro
+                if(producto.hasOwnProperty(key)){
+                    producto[key] = modificacion[key]
+                }
+            }
+
+            await fs.promises.writeFile(this.path, JSON.stringify(productos, null, "\t"));
+            return "El producto se actualizo correctamente"
+           
         }
     }   
 }
-
-//creamos el Product Manager
-let product = new ProductManager();
-
-//Pruebas solicitadas.
-
-// let resultado = await product.getProducts();
-// console.log(resultado);
-// let producto = await product.addProduct("producto prueba", "producto de prueba", 200 ,"sin imagen", "abcd1234", 25);
-// console.log(producto);
-// resultado = await product.getProducts();
-// console.log(resultado);
-// let productoId = await product.getProductById(2);
-// console.log(productoId);
-// let productoEliminado = await product.deleteProductById(1)
-// console.log(productoEliminado);
-// resultado = await product.getProducts();
-// console.log(resultado);
-let productoModificado = await product.updateProduct(2, "description", "Este es un producto modificado");
-console.log(productoModificado);
-// resultado = await product.getProducts();
-// console.log(resultado);
-
-
-
 

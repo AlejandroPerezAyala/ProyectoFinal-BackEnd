@@ -26,9 +26,9 @@ router.post("/", async (req, res) => {
 
 router.put("/:pid", async (req, res) => {
     const pid = parseInt(req.params.pid)
-    const {campo, actualizacion} = req.body
+    const actualizacion = req.body
     
-    const producto = await productManager.updateProduct(pid, campo, actualizacion);
+    const producto = await productManager.updateProduct(pid, actualizacion);
     res.send({
         status: producto
     })

@@ -1,11 +1,29 @@
 [
 	{
-		"title": "prueba",
-		"description": "producto de prueba",
-		"price": "200",
+		"title": "producto modificado",
+		"description": "producto modificado",
+		"price": "1000",
 		"thumbnail": " ",
 		"code": "abc123",
-		"stock": "20",
+		"stock": "10",
 		"id": 1
+	},
+	{
+		"title": "producto de prueba 2",
+		"description": "producto de prueba 2",
+		"price": "500",
+		"thumbnail": " ",
+		"code": "abc143",
+		"stock": "10",
+		"id": 2
+	},
+	{
+		"title": "producto de prueba 3",
+		"description": "producto de prueba 3",
+		"price": "1500",
+		"thumbnail": " ",
+		"code": "abcd1436",
+		"stock": "200",
+		"id": 3
 	}
 ]
