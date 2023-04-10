@@ -6,6 +6,8 @@ import { fileURLToPath } from "url"
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
 const filePath = path.join(__dirname, "../files/productos.json")
+
+const thumbnailURL = "http://localhost:8080/images/" 
 //Creamos la clase con los metodos solicitados
 export default class ProductManager{
     constructor(){
@@ -28,7 +30,7 @@ export default class ProductManager{
     }
 
     //Agregamos el producto
-    addProduct = async (title, description, price, thumbnail, code, stock) => {
+    addProduct = async (title, description, price, thumbnail, code, stock, category) => {
         if (fs.existsSync(this.path)) {
           // validamos si el producto existe
           let validacion = await this.validarProducto(code);
@@ -38,7 +40,7 @@ export default class ProductManager{
           } else {
 
             //validamos que todos los datos se coloquen
-            if(!title || !description || !price || !thumbnail || !code || !stock){
+            if(!title || !description || !price || !code || !stock){
                 return "Te falto colocar algun dato!"
             }
 
@@ -51,7 +53,9 @@ export default class ProductManager{
             title: title,
             description: description,
             price: price,
-            thumbnail: thumbnail,
+            thumbnail: thumbnailURL,
+            status: true,
+            category: category,
             code: code,
             stock: stock,
             id: productos.length + 1,
@@ -76,7 +80,9 @@ export default class ProductManager{
             title: title,
             description: description,
             price: price,
-            thumbnail: thumbnail,
+            thumbnail: thumbnailURL,
+            status: true,
+            category: category,
             code: code,
             stock: stock,
             id: this.productos.length + 1,

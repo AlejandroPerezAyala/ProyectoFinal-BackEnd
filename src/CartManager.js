@@ -2,7 +2,7 @@ import fs from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
 import ProductManager from "./ProductManager.js";
-import e from "express";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
@@ -75,13 +75,12 @@ export default class CartManager {
 
                 if (productIndex != -1) {
                     cartFiltrado.productos[productIndex].quantity ++;
-                    fs.writeFileSync(this.path, JSON.stringify(carts, null, "\t"));
-                    return({status: "Se Añadio el producto correctamente"})
                 } else {
                     cartFiltrado.productos.push({productID: id, quantity: 1});
-                    fs.writeFileSync(this.path, JSON.stringify(carts, null, "\t"));
-                    return({status: "Se Añadio el producto correctamente"})
                 }
+
+                fs.writeFileSync(this.path, JSON.stringify(carts, null, "\t"));
+                return({status: "Se Añadio el producto correctamente"})
                 
             } else {
                 return "El ID de carrito o el de producto no existe"
