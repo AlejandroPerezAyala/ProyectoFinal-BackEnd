@@ -13,15 +13,13 @@ router.get("/", async (req, res) => {
 
 router.get("/:pid", async (req, res) => {
     const producto = await productManager.getProductById(req.params.pid)
-    res.send(producto);
+    producto ? res.send({status: producto}) : res.status(400).send({error: "No existe el ID en los productos"})
 })
 
 router.post("/", async (req, res) => {
     const {title, description, price, thumbnail, code, stock, category} = req.body
     const producto = await productManager.addProduct(title,description,price,thumbnail,code,stock, category)
-    res.send({
-        status: producto
-    })
+    producto ? res.send({status: producto}): res.status(400).send({error: "Te falto algun dato o el producto ya existe"});
 })
 
 router.put("/:pid", async (req, res) => {
@@ -29,17 +27,13 @@ router.put("/:pid", async (req, res) => {
     const actualizacion = req.body
     
     const producto = await productManager.updateProduct(pid, actualizacion);
-    res.send({
-        status: producto
-    })
+    producto ? res.send({status: producto}) : res.status(400).send({error: "No existe el ID en los productos"})
 })
 
 router.delete("/:pid", async (req, res) => {
     const pid = parseInt(req.params.pid)
     const producto = await productManager.deleteProductById(pid)
-    res.send({
-        status: producto
-    })
+    producto ? res.send({status: producto}) : res.status(400).send({error: "No existe el ID en los productos"})
 })
 
 export default router

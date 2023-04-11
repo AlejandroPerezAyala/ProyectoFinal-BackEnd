@@ -14,14 +14,12 @@ router.post("/", async (req, res) => {
 
 router.get("/:cid", async (req,res) => {
     const cart = await cartManager.getCartById(req.params.cid);
-    res.send(cart);
+    cart ? res.send(cart) : res.status(400).send({error: "El ID del carrito no existe"})
 })
 
 router.post("/:cid/products/:pid", async (req, res) => {
     const productCart = await cartManager.addProductInCart(req.params.cid, req.params.pid);
-    res.send({
-        status: productCart
-    })
+    productCart ? res.send(productCart) : res.status(400).send({error: "El ID del carrito o del producto no existe"})
 } )
 
 

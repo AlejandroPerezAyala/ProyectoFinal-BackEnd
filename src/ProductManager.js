@@ -36,12 +36,12 @@ export default class ProductManager{
           let validacion = await this.validarProducto(code);
 
           if (validacion) {
-            return "el producto ya existe";
+            return null;
           } else {
 
             //validamos que todos los datos se coloquen
             if(!title || !description || !price || !code || !stock){
-                return "Te falto colocar algun dato!"
+                return null
             }
 
             //traemos los datos del JSON
@@ -72,7 +72,7 @@ export default class ProductManager{
         } else {// creamos el primer producto del JSON
           //validamos que todos los datos se coloquen
           if (!title ||!description ||!price ||!code ||!stock) {
-            return "Te falto colocar algun dato!";
+            return null;
           }
 
           //agregamos el producto
@@ -144,7 +144,7 @@ export default class ProductManager{
 
                 return "El producto se elimino correctamente"
             } else {
-                return "El producto con ese ID no existe"
+                return null
             }
         }
     }
@@ -164,7 +164,7 @@ export default class ProductManager{
 
             //Si el ID del producto no existe devuelvo un error 
             if(!producto){
-                return "El producto con ese ID no existe"
+                return null
             }
             
             //itero con el "for of" las claves obtenidas

@@ -54,7 +54,7 @@ export default class CartManager {
             if(cartFiltrado){
                 return cartFiltrado
             } else {
-                return {error: "El ID del carrito no existe"}
+                return null
             }
         }
     }
@@ -83,7 +83,7 @@ export default class CartManager {
                 return({status: "Se Añadio el producto correctamente"})
                 
             } else {
-                return "El ID de carrito o el de producto no existe"
+                return null
             }
             
         } 
