@@ -1,10 +1,8 @@
 //importamos FS
 import fs from "fs"
+import __dirname from "./utils.js";
 import path from "path"
-import { fileURLToPath } from "url"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename)
 const filePath = path.join(__dirname, "../files/productos.json")
 
 const thumbnailURL = "http://localhost:8080/images/" 
