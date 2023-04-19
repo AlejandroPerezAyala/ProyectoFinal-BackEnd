@@ -9,20 +9,24 @@ let stock = document.getElementById("stock")
 let code = document.getElementById("codigo")
 let btnadd = document.getElementById("btnadd")
 let btndelete = document.getElementById("btndelete")
-let products = document.getElementById("productos")
+let products = document.querySelector("#productos")
 
-btnadd.addEventListener("submit", async (e) => {
-    e.preventDefault();
 
-   
+
+btnadd.addEventListener("click", async (e) => {
+    e.preventDefault()
 
     const product = {
         title: title.value,
         description: description.value,
         price: price.value,
-        category: category.value,
-        stock: stock.value,
         code: code.value,
+        stock: stock.value,
+        category: category.value,
+    }
+
+    if(!title.value || !description.value || !price.value || !code.value || !stock.value || !category.value){
+        return alert("por favor coloca todos los datos");
     }
 
     try{
@@ -32,7 +36,7 @@ btnadd.addEventListener("submit", async (e) => {
             body: JSON.stringify(product)
         })
 
-        const postProductResponse = await response.json()
+        const postProductResponse = response.json()
         
 
         if(!postProductResponse) return alert(postProductResponse.response)
@@ -45,11 +49,35 @@ btnadd.addEventListener("submit", async (e) => {
         stock.value = ""
         
 
-        alert("Producto añadadido correctamente")
+        //alert("Producto añadadido correctamente")
     }catch(error){
         console.error(error)
     }
 
+})
+
+btndelete.addEventListener("click", async (event) => {
+    event.preventDefault()
+
+    const deleteId = id.value
+
+    if(!deleteId) return alert("coloca el Id por favor")
+
+    try{
+        const response = await fetch(`/realtimeproducts/${deleteId}`, {
+            method: "DELETE"
+        })
+        const product = await response.json()
+        
+
+        if(!product) return alert(product)
+        
+        id.value = ""
+        
+        alert("Product deleted.")
+    }catch(error){
+        console.error(error)
+    }
 })
 
 const createHtml = (data) => {
@@ -79,8 +107,14 @@ const createHtml = (data) => {
 }
 
 socket.on("newproduct", data =>{
-    products.innerHTML = ""
+    products.innerHTML = " "
     createHtml(data);
+    //window.location.reload();
+})
+
+socket.on("productdelete", data => {
+    products.innerHTML = " "
+    createHtml(data)
 })
 
 

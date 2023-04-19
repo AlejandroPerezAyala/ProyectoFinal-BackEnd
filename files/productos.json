@@ -11,48 +11,14 @@
 		"id": 1
 	},
 	{
-		"title": "producto de prueba 1",
-		"description": "producto de prueba 1",
-		"price": "1000",
-		"thumbnail": "http://localhost:8080/images/",
-		"status": true,
-		"category": "prueba",
-		"code": "abc123",
-		"stock": "20",
-		"id": 2
-	},
-	{
-		"title": "producto de prueba",
-		"description": "producto de prueba",
-		"price": "1000",
-		"thumbnail": "http://localhost:8080/images/",
-		"status": true,
-		"category": "prueba",
-		"code": "abc1234",
-		"stock": "20",
-		"id": 3
-	},
-	{
-		"title": "producto de prueba 2",
-		"description": "producto de prueba2",
-		"price": "1000",
+		"title": "produto de prueba real 2",
+		"description": "producto de prueba real 2",
+		"price": "2000",
 		"thumbnail": "http://localhost:8080/images/",
 		"status": true,
 		"category": "prueba 2",
-		"code": "abc1234r",
-		"stock": "20",
-		"id": 4
-	},
-	{
-		"title": "producto de prueba 3",
-		"description": "producto de prueba 3",
-		"price": "1000",
-		"thumbnail": "http://localhost:8080/images/",
-		"status": true,
-		"category": "prueba",
-		"code": "abc125",
-		"stock": "20",
-		"id": 5
+		"code": "abc54645",
+		"stock": "200",
+		"id": 3
 	}
-	
 ]

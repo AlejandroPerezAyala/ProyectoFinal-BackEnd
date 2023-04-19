@@ -27,15 +27,17 @@
     <h1 class="title">PRODUCTOS</h1>
 
     {{#each productos}}
-        <div class="products" id="productos">
-            <h3 ><span>Nombre: </span>{{this.title}}</h3>
-            <h5 ><span>ID: </span>{{this.id}}</h5>
-            <h5 ><span>Descripcion: </span>{{this.description}}</h5>
-            <h5 ><span>Precio: </span>{{this.price}}</h5>
-            <h5 ><span>Imagen: </span>{{this.thumbnail}}</h5>
-            <h5 ><span>Stock: </span>{{this.stock}}</h5>
-            <h5 ><span>Codigo: </span>{{this.code}}</h5>
-            <h5 ><span>Categoria: </span>{{this.category}}</h5>
+        <div class="products" >
+            <div id="productos">
+                {{!-- <h3 ><span>Nombre: </span>{{this.title}}</h3>
+                <h5 ><span>ID: </span>{{this.id}}</h5>
+                <h5 ><span>Descripcion: </span>{{this.description}}</h5>
+                <h5 ><span>Precio: </span>{{this.price}}</h5>
+                <h5 ><span>Imagen: </span>{{this.thumbnail}}</h5>
+                <h5 ><span>Stock: </span>{{this.stock}}</h5>
+                <h5 ><span>Codigo: </span>{{this.code}}</h5>
+                <h5 ><span>Categoria: </span>{{this.category}}</h5> --}}
+            </div>
         </div>
     {{/each}}
     
