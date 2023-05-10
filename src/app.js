@@ -5,10 +5,14 @@ import productsRouter from "./routes/products.router.js"
 import cartRouter from "./routes/cart.router.js"
 import viewsRouter from "./routes/views.router.js"
 import { Server } from "socket.io";
+import mongoose from "mongoose";
 
 
 const PORT = 8080;
+const MONGO = "mongodb+srv://perezalejandro266:155481Ale@database-proyectocoderb.84cvxnw.mongodb.net/?retryWrites=true&w=majority"
+
 const app = express();
+const connection = mongoose.connect(MONGO);
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -32,3 +36,5 @@ export const io = new Server(server);
 io.on("connection", socket => {
     console.log("usuario conectado");
 })
+
+

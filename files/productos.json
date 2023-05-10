@@ -1,24 +1,9 @@
-[
-	{
-		"title": "producto de prueba 5",
-		"description": "producto de prueba 5",
-		"price": "1000",
-		"thumbnail": "http://localhost:8080/images/",
-		"status": true,
-		"category": "prueba 2",
-		"code": "abce2142",
-		"stock": "20",
-		"id": 1
-	},
-	{
-		"title": "produto de prueba real 2",
-		"description": "producto de prueba real 2",
-		"price": "2000",
-		"thumbnail": "http://localhost:8080/images/",
-		"status": true,
-		"category": "prueba 2",
-		"code": "abc54645",
-		"stock": "200",
-		"id": 3
-	}
-]
+[]
+
+
+
+
+
+
+
+  
