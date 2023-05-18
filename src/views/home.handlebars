@@ -5,11 +5,21 @@
         <div class="products">
             <h3><span>Nombre: </span>{{this.title}}</h3>
             <h5><span>Descripcion: </span>{{this.description}}</h5>
-            <h5><span>Precio: </span>{{this.price}}</h5>
+            <h5><span>Precio: </span>${{this.price}}</h5>
             <h5><span>Imagen: </span>{{this.thumbnail}}</h5>
             <h5><span>Stock: </span>{{this.stock}}</h5>
             <h5><span>Codigo: </span>{{this.code}}</h5>
+            <button disabled="disabled">Agregar al carrito</button>
         </div>
     {{/each}}
+    <div class="boton">
+        {{#if hasPrevPage}}
+            <a href="/?page={{prevPage}}" ><button>Anterior</button></a>
+        {{/if}}
+        {{#if hasNextPage}}
+            <a href="/?page={{nextPage}}" ><button>Siguiente</button></a>
+        {{/if}}
+    </div>
+    
 </div>
 

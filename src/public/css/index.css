@@ -38,12 +38,29 @@ body{
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
+    text-align: center;
     justify-content: center;
     align-items: center;
     color: white;
     border-radius: 1rem;
     background-color: rgba(128, 128, 128, 0.637)
 
+}
+
+.products button{
+    margin-bottom: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 1rem;
+    font-size: 2rem;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: transparent;
+}
+
+.products button:hover{
+    border-color: white;
 }
 
 
@@ -99,6 +116,29 @@ body{
 }
 
 .form button:hover{
+    cursor: pointer;
+    border-color: white;
+}
+
+.boton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boton button{
+    margin-bottom: 5px;
+    background-color: rgba(128, 128, 128, 0.637);
+    color: white;
+    border-radius: 1rem;
+    font-size: 2rem;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid;
+    border-color: transparent;
+}
+
+.boton button:hover{
     cursor: pointer;
     border-color: white;
 }

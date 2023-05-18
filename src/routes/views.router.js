@@ -1,5 +1,6 @@
 import { Router } from "express";
 import ProductManager from "../dao/managers/ProductManager.js";
+import productModel from "../dao/models/products.model.js";
 import {io} from "../app.js"
 
 
@@ -8,17 +9,22 @@ const productManager = new ProductManager()
 const router = Router();
 
 router.get("/", async (req, res) => {
-    const productos = await productManager.getProducts()
-
+    const {page = 1, limit=4} = req.query;
+    const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit,lean:true});
+    const productos = docs;
     res.render('home', 
         {
             style: 'index.css',
-            productos
+            productos,
+            hasPrevPage,
+            hasNextPage,
+            nextPage,
+            prevPage
         });
 })
 
 router.get("/realtimeproducts", async (req, res) => {
-    const productos = await productManager.getProducts()
+    const productos = await productModel.find().lean();
     res.render('realTimeProducts', 
     {
         style: 'index.css',

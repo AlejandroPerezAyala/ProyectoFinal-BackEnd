@@ -12,7 +12,13 @@ const PORT = 8080;
 const MONGO = "mongodb+srv://perezalejandro266:155481Ale@database-proyectocoderb.84cvxnw.mongodb.net/?retryWrites=true&w=majority"
 
 const app = express();
-const connection = mongoose.connect(MONGO);
+
+
+const enviroment = async () => {
+   await mongoose.connect(MONGO);
+} 
+
+enviroment();
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
