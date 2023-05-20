@@ -21,7 +21,7 @@ export default class CartManager {
     }
 
     addProductInCart = async (cid, pid) =>{
-        const cart = await cartModel.findOne({_id:cid});
+        const cart = await cartModel.findOne({_id:cid}).lean();
         const producto = await productModel.findOne({_id:pid})
        
 
@@ -34,7 +34,7 @@ export default class CartManager {
                 cart.productos.push({producto: pid, qty: 1});
             }
 
-            const result = await cartModel.updateOne({_id: cid},{$set:cart});
+            const result = await cartModel.updateOne({_id: cid},{$set:cart}).lean();
 
             return({
                 code: 200,
@@ -85,8 +85,8 @@ export default class CartManager {
     }
 
     getCartById = async (cid) => {
-        const cart = await cartModel.findOne({_id:cid})
-        console.log(JSON.stringify(cart, null, ('\t')))
+        const cart = await cartModel.findOne({_id:cid}).lean()
+
         return({
             code:200,
             status: 'Success',

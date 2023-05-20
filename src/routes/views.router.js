@@ -1,11 +1,13 @@
 import { Router } from "express";
 import ProductManager from "../dao/managers/ProductManager.js";
 import productModel from "../dao/models/products.model.js";
+import CartManager from "../dao/managers/cartManagerMongo.js";
 import {io} from "../app.js"
 
 
 
 const productManager = new ProductManager()
+const cartManager = new CartManager()
 const router = Router();
 
 router.get("/", async (req, res) => {
@@ -54,4 +56,22 @@ router.delete("/realtimeproducts/:pid", async (req, res) => {
     io.emit("productdelete", productos);
     
 })
+
+router.get("/cart/:cid", async (req, res) => {
+    const id = req.params.cid;
+
+    const carts = await cartManager.getCartById(id);
+    const cart = carts.message;
+    const productos = cart.productos
+
+
+    console.log(productos)
+
+    res.render("cart", {
+        productos
+    })
+    
+
+}) 
+    
 export default router
