@@ -1,7 +1,8 @@
 <h1>Carrito</h1>
 {{#each productos}}
     <div>
-        <h3>producto: {{this.producto}}</h3>
+        <h3>producto: {{this.producto._id}}</h3>
+        <h3>nombre: {{this.producto.title}}</h3>
         <h3>cantidad: {{this.qty}}</h3>
     </div>
 {{/each}}

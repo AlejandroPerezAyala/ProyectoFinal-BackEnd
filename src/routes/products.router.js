@@ -15,8 +15,8 @@ router.get("/insertion", async (req, res) => {
 })
 
 router.get("/", async (req, res) => {
-    let {limit = 4, page = 1} = req.query;
-    const productos = await productManager.getProducts(limit,page)
+    let {limit = 6, page = 1, sort = 1} = req.query;
+    const productos = await productManager.getProducts(limit,page, sort)
     res.status(productos.code).send({status: productos.status, message: productos.message});    
 })
 

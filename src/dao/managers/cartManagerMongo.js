@@ -75,7 +75,7 @@ export default class CartManager {
     }
 
     getCarts = async () => {
-        const carts =  await cartModel.find();
+        const carts =  await cartModel.find().populate("productos.producto").lean();
 
         return({
             code:200,
@@ -85,7 +85,7 @@ export default class CartManager {
     }
 
     getCartById = async (cid) => {
-        const cart = await cartModel.findOne({_id:cid}).lean()
+        const cart = await cartModel.findOne({_id:cid}).populate("productos.producto").lean()
 
         return({
             code:200,
