@@ -11,17 +11,22 @@ const cartManager = new CartManager()
 const router = Router();
 
 router.get("/", async (req, res) => {
-    const {page = 1, limit=4} = req.query;
-    const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit,lean:true});
+    const {page = 1, limit=4 , sort} = req.query;
+    const user = req.session.user;
+    console.log(user);
+    const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit, sort: {price: sort},lean:true});
     const productos = docs;
     res.render('home', 
         {
             style: 'index.css',
+            user,
             productos,
             hasPrevPage,
             hasNextPage,
             nextPage,
-            prevPage
+            prevPage,
+            limit,
+            sort
         });
 })
 
@@ -82,10 +87,6 @@ router.get("/login", (req,res) => {
     res.render("login")
 })
 
-router.get("/profile", (req,res) => {
-    res.render('profile', {
-        user: req.session.user
-    })
-})
+
     
 export default router

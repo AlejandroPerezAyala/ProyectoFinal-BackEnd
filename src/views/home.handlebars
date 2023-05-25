@@ -1,6 +1,14 @@
 <div>
-    <h1 class="title">PRODUCTOS</h1>
-
+    
+    {{#if user}}
+    <div class="bienvenida">
+        <h2>Bienvenido</h2>
+        <h3>usuario: {{user.name}}</h3>
+        <a href="/api/session/logout"><button>logout</button></a>
+    </div>
+       
+    {{/if}}
+    <h2 class="title">PRODUCTOS</h2>
     {{#each productos}}
         <div class="products">
             <h3><span>Nombre: </span>{{this.title}}</h3>
@@ -14,10 +22,10 @@
     {{/each}}
     <div class="boton">
         {{#if hasPrevPage}}
-            <a href="/?page={{prevPage}}" ><button>Anterior</button></a>
+            <a href="/?page={{prevPage}}&limit={{limit}}&sort={{sort}}" ><button>Anterior</button></a>
         {{/if}}
         {{#if hasNextPage}}
-            <a href="/?page={{nextPage}}" ><button>Siguiente</button></a>
+            <a href="/?page={{nextPage}}&limit={{limit}}&sort={{sort}}" ><button>Siguiente</button></a>
         {{/if}}
     </div>
     
