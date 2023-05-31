@@ -1,6 +1,8 @@
 import { Router } from "express";
 import userModel from "../dao/models/user.model.js";
 
+
+
 const router = Router();
 
 router.post("/register", async (req,res)=>{
@@ -29,7 +31,19 @@ router.post("/register", async (req,res)=>{
 router.post("/login", async (req, res) => {
     const {email, password} = req.body;
 
-    const user = await userModel.findOne({email, password})
+    let user;
+
+    if(email === 'adminCoder@coder.com' && password === 'adminCod3r123'){
+        user = {
+            first_name: 'Coder',
+            last_name: 'House',
+            email : email,
+            age: 'unknown',
+            rol: 'Admin'
+        }
+    }else{
+       user = await userModel.findOne({email, password})
+    }
 
     if(!user) {
         return res.status(400).send({status:"error", error:"datos incorrectos"})
@@ -38,7 +52,8 @@ router.post("/login", async (req, res) => {
     req.session.user = {
         name: `${user.first_name} ${user.last_name}`,
         email: user.email,
-        age: user.age
+        age: user.age,
+        rol: user.rol
     }
 
     res.send({status:"success", payload: req.res.user, message:"inicio correcto"})

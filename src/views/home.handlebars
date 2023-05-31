@@ -1,13 +1,20 @@
 <div>
     
-    {{#if user}}
+    {{#if user.rol}}
     <div class="bienvenida">
         <h2>Bienvenido</h2>
         <h3>usuario: {{user.name}}</h3>
+        <h3>rol: {{user.rol}}</h3>
         <a href="/api/session/logout"><button>logout</button></a>
     </div>
-       
+    {{else}}
+        <div class="bienvenida">
+            <h2>Bienvenido</h2>
+            <h3>usuario: {{user.name}}</h3>
+            <a href="/api/session/logout"><button>logout</button></a>
+        </div>
     {{/if}}
+    
     <h2 class="title">PRODUCTOS</h2>
     {{#each productos}}
         <div class="products">

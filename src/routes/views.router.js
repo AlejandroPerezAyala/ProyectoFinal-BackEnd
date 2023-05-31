@@ -4,13 +4,21 @@ import productModel from "../dao/models/products.model.js";
 import CartManager from "../dao/managers/cartManagerMongo.js";
 import {io} from "../app.js"
 
+const privateAcces = (req,res,next) =>{
+    if(!req.session.user) return res.redirect('/login')
+    next();
+}
 
+const publicAcces = (req, res, next) => {
+    if(req.session.user) return res.redirect('/');
+    next();
+}
 
 const productManager = new ProductManager()
 const cartManager = new CartManager()
 const router = Router();
 
-router.get("/", async (req, res) => {
+router.get("/", privateAcces ,async (req, res) => {
     const {page = 1, limit=4 , sort} = req.query;
     const user = req.session.user;
     console.log(user);
@@ -62,7 +70,7 @@ router.delete("/realtimeproducts/:pid", async (req, res) => {
     
 })
 
-router.get("/cart/:cid", async (req, res) => {
+router.get("/cart/:cid", privateAcces ,async (req, res) => {
     const id = req.params.cid;
 
     const carts = await cartManager.getCartById(id);
@@ -79,11 +87,11 @@ router.get("/cart/:cid", async (req, res) => {
 
 }) 
 
-router.get("/register", (req,res) => {
+router.get("/register", publicAcces,(req,res) => {
     res.render('register')
 })
 
-router.get("/login", (req,res) => {
+router.get("/login", publicAcces,(req,res) => {
     res.render("login")
 })
 
