@@ -9,6 +9,8 @@ import { Server } from "socket.io";
 import mongoose from "mongoose";
 import session from "express-session";
 import MongoStore from "connect-mongo";
+import passport from "passport";
+import initializePassport from "./config/passport.config.js";
 
 
 const PORT = 8080;
@@ -37,6 +39,10 @@ app.use(session({
     saveUninitialized:false
 
 }))
+initializePassport()
+
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.engine("handlebars", handlebars.engine());
 

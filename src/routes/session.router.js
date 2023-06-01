@@ -1,63 +1,40 @@
 import { Router } from "express";
 import userModel from "../dao/models/user.model.js";
+import { createHash, isValidPassword } from "../utils.js";
+import passport from "passport";
 
 
 
 const router = Router();
 
-router.post("/register", async (req,res)=>{
-    const {first_name, last_name, email, age, password} = req.body;
-
-    const exist = await userModel.findOne({email});
-    if(exist){
-        return res.status(400).send({status: "error", error:"User already exist"});
-    }
-
-    const user = {
-        first_name,
-        last_name,
-        email,
-        age,
-        password
-    }
-
-    const result = await userModel.create(user)
-
-    console.log(user);
-    
-    res.status(200).send({status:"succes", messsage:"user registered", data: result})
+router.post("/register", passport.authenticate('register', {failureRedirect:'/failregister'}) ,async (req,res)=>{
+    res.send({status: 'success', message: 'Usuario registrado'})
 })
 
-router.post("/login", async (req, res) => {
-    const {email, password} = req.body;
+router.get('/failreguster', async (req, res) => {
+    console.log("Failed strategy");
+    res.send({error: 'failed'});
+})
 
-    let user;
-
-    if(email === 'adminCoder@coder.com' && password === 'adminCod3r123'){
-        user = {
-            first_name: 'Coder',
-            last_name: 'House',
-            email : email,
-            age: 'unknown',
-            rol: 'Admin'
-        }
-    }else{
-       user = await userModel.findOne({email, password})
-    }
-
-    if(!user) {
+router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogin'}) ,async (req, res) => {
+    if(!req.user) {
         return res.status(400).send({status:"error", error:"datos incorrectos"})
     }
 
     req.session.user = {
-        name: `${user.first_name} ${user.last_name}`,
-        email: user.email,
-        age: user.age,
-        rol: user.rol
+        name: `${req.user.first_name} ${req.user.last_name}`,
+        email: req.user.email,
+        age: req.user.age,
+        rol: req.user.rol
     }
 
-    res.send({status:"success", payload: req.res.user, message:"inicio correcto"})
+    res.send({status:"success", payload: req.user, message:"inicio correcto"})
 
+})
+
+router.get("/faillogin", async (req,res) => {
+    console.log("failed");
+    res.send({error: 'failed'});    
 })
 
 router.get("/logout", (req,res) => {
