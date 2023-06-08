@@ -22,7 +22,7 @@ router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogi
     }
 
     req.session.user = {
-        name: `${req.user.first_name} ${req.user.last_name}`,
+        first_name: `${req.user.first_name} ${req.user.last_name}`,
         email: req.user.email,
         age: req.user.age,
         rol: req.user.rol
@@ -35,6 +35,14 @@ router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogi
 router.get("/faillogin", async (req,res) => {
     console.log("failed");
     res.send({error: 'failed'});    
+})
+
+router.get("/github", passport.authenticate('github', {scope:['user:email']}),  async (req,res) => {})
+
+router.get("/githubcallback", passport.authenticate("github", {failureRedirect:'/login'}), async (req,res) => {
+    
+    req.session.user = req.user;
+    res.redirect('/');
 })
 
 router.get("/logout", (req,res) => {
