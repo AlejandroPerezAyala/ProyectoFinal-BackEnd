@@ -2,7 +2,9 @@ import passport from "passport";
 import local from "passport-local"
 import GitHubStrategy from "passport-github2"
 import userModel from "../dao/models/user.model.js";
+import cartModel from "../dao/models/carts.model.js";
 import { createHash, isValidPassword } from "../utils.js";
+import { config } from "./dotenv.config.js";
 
 
 const LocalStrategy = local.Strategy;
@@ -18,12 +20,21 @@ const initializePassport = () => {
                 return done(null,false);
             }
 
+            let newCart = {}
+            newCart = await cartModel.create(newCart);
+
+            let role;
+
+            password == config.auth.pass && email == config.auth.user ? role="admin" : role="user"
+
             const newUser = {
                 first_name,
                 last_name,
                 email,
                 age,
-                password: createHash(password)
+                password: createHash(password),
+                cart: newCart,
+                role,
             }
 
             let result = await userModel.create(newUser)
@@ -36,6 +47,7 @@ const initializePassport = () => {
 
     passport.use('login', new LocalStrategy({usernameField:'email'}, async (username, password, done) =>{
         try{
+
             const user = await userModel.findOne({email:username});
             if(!user){
                 console.log("EL ususario no existe");

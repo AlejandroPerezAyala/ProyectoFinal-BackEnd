@@ -17,6 +17,7 @@ router.get('/failreguster', async (req, res) => {
 })
 
 router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogin'}) ,async (req, res) => {
+
     if(!req.user) {
         return res.status(400).send({status:"error", error:"datos incorrectos"})
     }
@@ -25,7 +26,7 @@ router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogi
         first_name: `${req.user.first_name} ${req.user.last_name}`,
         email: req.user.email,
         age: req.user.age,
-        rol: req.user.rol
+        rol: req.user.role
     }
 
     res.send({status:"success", payload: req.user, message:"inicio correcto"})
