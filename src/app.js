@@ -14,10 +14,7 @@ import initializePassport from "./config/passport.config.js";
 import { config } from "./config/dotenv.config.js";
 
 
-
-
 const app = express();
-
 
 const enviroment = async () => {
    await mongoose.connect(config.db.url);

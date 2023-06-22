@@ -67,10 +67,12 @@ const initializePassport = () => {
         callbackURL:'http://localhost:8080/api/session/githubcallback'
     }, async (accesToken, refreshToken, profile, done) => {
         try{
-            console.log(profile)
             const user = await userModel.findOne({email:profile._json.login})
 
             if(!user){
+
+                let newCart = {}
+                newCart = await cartModel.create(newCart);
 
                 const email = profile._json.email == null ? profile._json.login : null
 
@@ -79,7 +81,9 @@ const initializePassport = () => {
                     last_name: '',
                     email: email,
                     age: 18,
-                    password: ''
+                    password: '',
+                    cart: newCart,
+                    role: "user"
                 }
 
                 const result = await userModel.create(newUser);
