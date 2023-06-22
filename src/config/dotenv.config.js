@@ -10,7 +10,7 @@ export const config = {
         url: process.env.MONGO_URL
     },
     auth:{
-        user:"adminCoder@coder.com",
-        pass:"adminCod3r123"
+        user:process.env.ADMIN_USER,
+        pass:process.env.ADMIN_PASSWORD
     }
 }

@@ -11,16 +11,16 @@ import session from "express-session";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 import initializePassport from "./config/passport.config.js";
+import { config } from "./config/dotenv.config.js";
 
 
-const PORT = 8080;
-const MONGO = "mongodb+srv://perezalejandro266:155481Ale@database-proyectocoderb.84cvxnw.mongodb.net/?retryWrites=true&w=majority"
+
 
 const app = express();
 
 
 const enviroment = async () => {
-   await mongoose.connect(MONGO);
+   await mongoose.connect(config.db.url);
 } 
 
 enviroment();
@@ -31,7 +31,7 @@ app.use(express.static(__dirname+"/public"))
 
 app.use(session({
     store: new MongoStore({
-        mongoUrl: MONGO,
+        mongoUrl: config.db.url,
         ttl: 3600
     }),
     secret: "CoderSecret",
@@ -49,7 +49,7 @@ app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname+"/views");
 app.set("view engine", "handlebars");
 
-const server = app.listen(PORT, () => {console.log(`Servidor escuchando en el puerto: ${PORT}`)})
+const server = app.listen(config.server.port, () => {console.log(`Servidor escuchando en el puerto: ${config.server.port}`)})
 
 app.use("/", viewsRouter);
 app.use("/api/products", productsRouter);
