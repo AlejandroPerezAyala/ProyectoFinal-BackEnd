@@ -21,6 +21,7 @@ const router = Router();
 router.get("/", privateAcces ,async (req, res) => {
     const {page = 1, limit=4 , sort} = req.query;
     const user = req.session.user;
+    console.log(user.rol)
     const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit, sort: {price: sort},lean:true});
     const productos = docs;
     res.render('home', 
@@ -87,11 +88,15 @@ router.get("/cart/:cid", privateAcces ,async (req, res) => {
 }) 
 
 router.get("/register", publicAcces,(req,res) => {
-    res.render('register')
+    res.render('register',{
+        style:"index.css"
+    })
 })
 
 router.get("/login", publicAcces,(req,res) => {
-    res.render("login")
+    res.render("login", {
+        style: "index.css"
+    })
 })
 
 
