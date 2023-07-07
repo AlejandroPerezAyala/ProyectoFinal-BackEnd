@@ -1,7 +1,7 @@
 import { Router } from "express";
-import userModel from "../dao/models/user.model.js";
-import { createHash, isValidPassword } from "../utils.js";
 import passport from "passport";
+import { GetUserDto } from "../dao/dto/user.dto.js";
+import userModel from "../dao/models/user.model.js";
 
 
 
@@ -23,7 +23,8 @@ router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogi
     }
 
     req.session.user = {
-        first_name: `${req.user.first_name} ${req.user.last_name}`,
+        first_name: req.user.first_name,
+        last_name: req.user.last_name ,
         email: req.user.email,
         age: req.user.age,
         rol: req.user.role
@@ -51,6 +52,11 @@ router.get("/logout", (req,res) => {
         if (err) return res.status(500).send({status:"error", error:"No pudo cerrar sesion"});
         res.redirect('/login');
     })
+})
+
+router.get("/current", async (req,res) => {
+    const user = new GetUserDto(req.session.user)
+    res.send(user);
 })
 
 export default router;

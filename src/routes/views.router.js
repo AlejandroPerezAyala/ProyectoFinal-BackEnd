@@ -2,7 +2,9 @@ import { Router } from "express";
 import ProductManager from "../dao/managers/ProductManager.js";
 import productModel from "../dao/models/products.model.js";
 import CartManager from "../dao/managers/cartManagerMongo.js";
+import { GetUserDto } from "../dao/dto/user.dto.js";
 import {io} from "../app.js"
+
 
 const privateAcces = (req,res,next) =>{
     if(!req.session.user) return res.redirect('/login')
@@ -20,8 +22,7 @@ const router = Router();
 
 router.get("/", privateAcces ,async (req, res) => {
     const {page = 1, limit=4 , sort} = req.query;
-    const user = req.session.user;
-    console.log(user.rol)
+    const user = new GetUserDto(req.session.user);
     const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit, sort: {price: sort},lean:true});
     const productos = docs;
     res.render('home', 
