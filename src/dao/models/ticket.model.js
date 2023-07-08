@@ -4,7 +4,7 @@ const collection = "tickets"
 
 const schema = new mongoose.Schema({
     code: String,
-    purchase_datetime: new Date().toLocaleString(),
+    purchase_datetime: String,
     amount: Number,
     purchaser: String
 })

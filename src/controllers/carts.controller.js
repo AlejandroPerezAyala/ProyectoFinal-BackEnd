@@ -1,6 +1,8 @@
 import CartsService from "../services/cart.service.js";
+import TicketService from "../services/tickets.service.js";
 
 const cartsService = new CartsService();
+const ticketService = new TicketService();
 
 export default class CartsController {
     createCart = async (req, res) => {
@@ -37,5 +39,11 @@ export default class CartsController {
         const id = req.params.cid;
         const result = await cartsService.deleteAllProductsInCart(id);
         res.status(result.code).send({status: result.status, message: result.message})
+    }
+
+    purchaseCart = async (req, res) => {
+        const cid = req.params.cid
+        const result = await ticketService.purchaseCart(cid);
+        res.send(result);
     }
 }

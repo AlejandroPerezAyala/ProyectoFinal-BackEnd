@@ -14,8 +14,8 @@ const adminAccess = (req,res,next) => {
 
 
 router.get("/insertion", adminAccess,productsController.insertManyProducts)
-router.get("/", adminAccess,productsController.getProducts)
-router.get("/:pid", adminAccess,productsController.getProductById)
+router.get("/",productsController.getProducts)
+router.get("/:pid",productsController.getProductById)
 router.post("/", adminAccess,productsController.addProduct)
 router.put("/:pid", adminAccess,productsController.updateProduct)
 router.delete("/:pid", adminAccess,productsController.deleteProduct)
