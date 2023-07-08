@@ -27,7 +27,9 @@ router.post("/login", passport.authenticate('login', {failureRedirect:'/faillogi
         last_name: req.user.last_name ,
         email: req.user.email,
         age: req.user.age,
-        rol: req.user.role
+        rol: req.user.role,
+        id: req.user._id,
+        cid: req.user.cart
     }
 
     res.send({status:"success", payload: req.user, message:"inicio correcto"})

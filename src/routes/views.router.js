@@ -23,6 +23,7 @@ const router = Router();
 router.get("/", privateAcces ,async (req, res) => {
     const {page = 1, limit=4 , sort} = req.query;
     const user = new GetUserDto(req.session.user);
+    console.log(req.session.user)
     const {docs, hasPrevPage, hasNextPage, nextPage, prevPage} = await productModel.paginate({},{page,limit, sort: {price: sort},lean:true});
     const productos = docs;
     res.render('home', 
